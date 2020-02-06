@@ -1,22 +1,25 @@
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
-// Write password to the #password input
 function writePassword() {
-  // var password = generatePassword();
+
   var passwordText = document.querySelector("#password");
+  var password = '';
+  var availableCharacters = '';
+  var lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
+  var upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var numericChars = '0123456789';
+  var specialChars = "!#$%&()*+,-./:;<=>?@[\]^_{|}~" + "'" + "`" + '"';
 
   for (var i = 1; i > 0;) {
-    var userPassLength = prompt("How long do you want your password to be? Please input a number")
-
-    if (userPassLength < 8) {
+    var passwordLength = prompt("How long do you want your password to be? Please input a number.");
+    
+    if (passwordLength < 8) {
       alert("That is too short. Please choose a longer password.");
       i++;
-    } else if (userPassLength > 128) {
+    } else if (passwordLength > 128) {
       alert("That is too long. Please choose a shorter password.");
       i++;
-    } else if (isNaN(userPassLength) === true) {
+    } else if (isNaN(passwordLength) === true) {
       alert("Please input a number");
       i++;
     } else {
@@ -24,26 +27,40 @@ function writePassword() {
     }
   }
   for (var i = 1; i > 0;) {
-    var lowerCase = confirm("Click OK if you want to include lower case characters in your password.")
+    var includeLowerCase = confirm("Click OK if you want to include lowercase characters in your password.")
 
-    var upperCase = confirm("Click OK if you want to include upper case characters in your password.")
+    var includeUpperCase = confirm("Click OK if you want to include uppercase characters in your password.")
 
-    var numeric = confirm("Click OK if you want to include numeric characters in your password.")
+    var includeNumeric = confirm("Click OK if you want to include numeric characters in your password.")
 
-    var specialChar = confirm("Click OK if you want to include special characters in your password.")
+    var includeSpecial = confirm("Click OK if you want to include special characters in your password.")
 
-    if (lowerCase === false && upperCase === false && numeric === false && specialChar === false) {
-      alert("You must select at least one character type");
+    if (includeLowerCase === false && includeUpperCase === false && includeNumeric === false && includeSpecial === false) {
+      alert("You must select at least one character type.");
       i++;
     } else {
       i = 0;
     }
   }
+
+  if (includeLowerCase) {
+    availableCharacters += lowerCaseChars;
+  }
+  if (includeUpperCase) {
+    availableCharacters += upperCaseChars;
+  }
+  if (includeNumeric) {
+    availableCharacters += numericChars;
+  }
+  if (includeSpecial) {
+    availableCharacters += specialChars;
+  }
+
+  for (var i = 0; i < passwordLength; i++) {
+    password += availableCharacters.charAt(Math.floor(Math.random() * availableCharacters.length));
+  }
+  passwordText.innerHTML = password;
 }
 
-// passwordText.value = password;
 
-
-
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
