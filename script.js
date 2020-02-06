@@ -1,32 +1,32 @@
 function writePassword() {
 
   var passwordText = document.querySelector("#password");
-  var password = '';
-  var availableCharacters = '';
-  var lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
-  var upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var numericChars = '0123456789';
-  var specialChars = "!#$%&()*+,-./:;<=>?@[\]^_{|}~" + "'" + "`" + '"';
+  var password = "";
+  var availableCharacters = "";
+  var lowerCaseChars = "abcdefghijklmnopqrstuvwxyz";
+  var upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var numericChars = "0123456789";
+  var specialChars = " !#$%&()*+,-./:;<=>?@[\]^_{|}~" + "'" + "`" + '"';
+  var validPassword = false;
+  var validChars = false;
 
-  for (var i = 1; i > 0;) {
+  while (!validPassword) {
 
     var passwordLength = prompt("How long do you want your password to be? Please input a number.");
 
-    if (passwordLength < 8) {
+    if (passwordLength == null) {
+      return;
+    } else if (passwordLength < 8) {
       alert("That is too short. Please choose a longer password.");
-      i++;
     } else if (passwordLength > 128) {
       alert("That is too long. Please choose a shorter password.");
-      i++;
     } else if (isNaN(passwordLength)) {
       alert("Please input a number.");
-      i++;
-    }
-    else {
-      i = 0;
+    } else {
+      validPassword = true;
     }
   }
-  for (var i = 1; i > 0;) {
+  while (!validChars) {
     var includeLowerCase = confirm("Click OK if you want to include lowercase characters in your password.");
 
     var includeUpperCase = confirm("Click OK if you want to include uppercase characters in your password.");
@@ -37,9 +37,8 @@ function writePassword() {
 
     if (includeLowerCase === false && includeUpperCase === false && includeNumeric === false && includeSpecial === false) {
       alert("You must select at least one character type.");
-      i++;
     } else {
-      i = 0;
+      validChars = true;
     }
   }
 
