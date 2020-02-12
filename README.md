@@ -2,6 +2,6 @@ In this repository I created an application that generates a random password acc
 
 [Here is a link to the application.](https://ethanl150.github.io/PasswordGenerator/)
 
-![Image of Yaktocat](passwordgenerator.png)
+![Image of passwordgenerator](passwordgenerator.png)
 
-![Image of Yaktocat](passgenerated.png)
+![Image of passwordgenerator](passgenerated.png)
